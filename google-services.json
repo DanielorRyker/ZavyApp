@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "143349438691",
+    "project_id": "zavyapp-9de44",
+    "storage_bucket": "zavyapp-9de44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143349438691:android:27c62911341b3c8a984dd6",
+        "android_client_info": {
+          "package_name": "com.danielryker.ZavyApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9dKiR4k5JAsuhSGrS-xO72KvkKVAsyy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
