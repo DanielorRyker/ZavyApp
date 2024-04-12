@@ -27,18 +27,22 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.danielryker.ZavyApp"
+      "package": "com.zavyapp"
     },
     "extra": {
       "eas": {
         "projectId": "56e78c1d-bfcf-4ca9-a40c-f29ed28f98a3"
       }
     },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/56e78c1d-bfcf-4ca9-a40c-f29ed28f98a3"
-    }
+    },
+    "owner": "danielryker"
   }
 }

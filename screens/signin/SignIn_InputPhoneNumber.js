@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {StyleSheet,Text,View,Image,TouchableOpacity,Alert} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-import PhoneInput from "react-native-international-phone-number";
+
 import {CheckBox} from "react-native-elements";
+import PhoneInput from "react-native-international-phone-number";
 
 export default function SignIn_InputPhoneNumber() {
   const navigation = useNavigation();

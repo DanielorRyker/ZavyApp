@@ -3,34 +3,39 @@ import {StyleSheet,Text,View,Image,TouchableOpacity,Alert, TextInput} from "reac
 import {useNavigation} from "@react-navigation/native";
 import { Button, Icon } from "react-native-elements";
 
-export default function SignIn_InputDisplayName() {
+export default function SignIn_InputPassword() {
     return(
 
         <View style={styles.container}>
             <View style={styles.title}>
                 <Text style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
-                    Nhập tên Zavy
+                    Nhập mật khẩu mới
                 </Text>
-                <Text style={{ color: "#727881", fontSize: 15, marginTop: 10 }}> Hãy dùng tên thật để mọi người nhận ra bạn d</Text>
             </View>
 
-            <View style={styles.inputName}>
+            <View style={styles.inputPassword}>
                 <TextInput
                     style={styles.input}
                     onChangeText={''}
-                    placeholder="Nguyễn Văn A"
+                    placeholder="Nhập mật khẩu mới"
                     placeholderTextColor={'gray'}
                     underlineColorAndroid='transparent'
+                    passwordRules={'required: lower; required: upper; required: digit; required: [-]; required: length(8,);'}
+                    secureTextEntry={true}
                 />
+
+                <TextInput
+                    style={styles.input}
+                    onChangeText={''}
+                    placeholder="Nhập lại mật khẩu"
+                    placeholderTextColor={'gray'}
+                    underlineColorAndroid='transparent'
+                    passwordRules={'required: lower; required: upper; required: digit; required: [-]; required: length(8,);'}
+                    secureTextEntry={true}
+               />
             </View> 
             <View style={styles.validateTextGroup}>
-                <Text style={styles.validateText}>• Dài từ 2 đến 40 ký tự</Text>
-                <Text style={styles.validateText}>• Không chứa số</Text>
-                <Text style={styles.validateText}>
-    {'• Cần tuân thủ'} 
-
-    <Text style={{color: '#0067fd'}}> quy tắc đặt tên của Zavy</Text>
-</Text>
+                <Text style={styles.validateText}>• Mật khẩu chứa ít nhất 8 kí tự</Text>
             </View>
 
             <View style={{marginTop:40, alignItems: 'center'}}>
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
     },
 
-    inputName: {
+    inputPassword: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
@@ -77,7 +82,7 @@ const styles = StyleSheet.create({
         color: 'white',
         paddingLeft: 20,
         borderColor: '#0067fd',
-
+        marginTop: 20,
         borderWidth: 1,
     },
 
