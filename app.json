@@ -29,9 +29,6 @@
       },
       "package": "com.danielryker.ZavyApp"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
         "projectId": "56e78c1d-bfcf-4ca9-a40c-f29ed28f98a3"

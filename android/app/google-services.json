@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "735116113870",
+    "firebase_url": "https://zavy-fdc00-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "zavy-fdc00",
+    "storage_bucket": "zavy-fdc00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735116113870:android:c966f780be5f94f79d1d9f",
+        "android_client_info": {
+          "package_name": "com.zavyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwjnJBBjnsf263soVHuDVJYURCPIJWL7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
