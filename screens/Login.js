@@ -9,9 +9,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const backHome = () => {
-    navigation.navigate('HomeOut');
-  };
+ 
+
 
   return (
     <View style={styles.container}>

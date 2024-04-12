@@ -10,12 +10,14 @@ import SignIn_AuthOTP from './screens/signin/SignIn_AuthOTP';
 import SignIn_InputDisplayName from './screens/signin/SignIn_InputDisplayName';
 import SignIn_InputDetail from './screens/signin/SignIn_InputDetail';
 import SignIn_InputPassword from './screens/signin/SignIn_InputPassword'; 
+import Message from './screens/Message';
+import MessageGr from './screens/MessageGr';
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignIn_InputDetail" >
+      <Stack.Navigator initialRouteName="MessageGr" >
         <Stack.Screen name="HomeOut" component={HomeOut} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn_InputPhoneNumber" component={SignIn_InputPhoneNumber} options={{headerShown: false}}/>
@@ -24,6 +26,9 @@ function App() {
         <Stack.Screen name="SignIn_InputDisplayName" component={SignIn_InputDisplayName} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn_InputDetail" component={SignIn_InputDetail} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn_InputPassword" component={SignIn_InputPassword} options={{headerShown: false}}/>
+        <Stack.Screen name="Message" component={Message} options={{headerShown: false}}/>
+        <Stack.Screen name="MessageGr" component={MessageGr} options={{headerShown: false}}/>
+
       </Stack.Navigator>
     </NavigationContainer>
   );

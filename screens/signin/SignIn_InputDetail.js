@@ -23,7 +23,6 @@ export default function SignIn_InputDetail() {
                 
                 <TouchableOpacity
                     style={styles.selected}
-                    onPress={showDatePicker}
                 >
                     <Text style={styles.textBirthDate}>Ngày sinh </Text>
                     <Image style={styles.iconSelected} source={require('../../icon/icon-calendar.png')}/>
