@@ -6,14 +6,14 @@ import EmojiSelector from 'react-native-emoji-selector';
 import ImagePicker from 'react-native-image-picker';
 
 const images = {
-  microphone: require('../icon/microphone.png'),
-  microphoneActive: require('../icon/microphone-active.png'),
-  emoji: require('../icon/emoji.png'),
-  image: require('../icon/images.png'),
-  telephone: require('../icon/telephone.png'),
-  videocall: require('../icon/videocall.png'),
-  menu: require('../icon/menu.png'),
-  backHome :require('../icon/back.png'),
+  microphone: require('../../icon/microphone.png'),
+  microphoneActive: require('../../icon/microphone-active.png'),
+  emoji: require('../../icon/emoji.png'),
+  image: require('../../icon/images.png'),
+  telephone: require('../../icon/telephone.png'),
+  videocall: require('../../icon/videocall.png'),
+  menu: require('../../icon/menu.png'),
+  backHome :require('../../icon/back.png'),
 };
 
 export default function Message() {

@@ -23,9 +23,12 @@ export default function SignIn_AuthOTP() {
   }, []);
 
   const createUserCollection = (uid, phoneNumber) => {
+    const countryCodeLength = phoneNumber.indexOf('0');
+    const number = phoneNumber.substring(countryCodeLength);
+  
     const userRef = database().ref('users/' + uid);
     userRef.set({
-      phoneNumber,
+      phoneNumber: number,
     });
   };
 

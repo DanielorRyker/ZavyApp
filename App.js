@@ -10,11 +10,15 @@ import SignIn_AuthOTP from './screens/signin/SignIn_AuthOTP';
 import SignIn_InputDisplayName from './screens/signin/SignIn_InputDisplayName';
 import SignIn_InputDetail from './screens/signin/SignIn_InputDetail';
 import SignIn_InputPassword from './screens/signin/SignIn_InputPassword'; 
+import Message from './screens/chat/Message';
+import MessageGr from './screens/chat/MessageGr';
+
+
 const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignIn_InputDetail" >
+      <Stack.Navigator initialRouteName="HomeOut" >
         <Stack.Screen name="HomeOut" component={HomeOut} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
         <Stack.Screen name="SignIn_InputPhoneNumber" component={SignIn_InputPhoneNumber} options={{headerShown: false}}/>
