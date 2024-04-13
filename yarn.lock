@@ -3900,6 +3900,11 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
+dooboolab-welcome@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.3.2.tgz#4928595312f0429b4ea1b485ba8767bae6acdab7"
+  integrity sha512-2NbMaIIURElxEf/UAoVUFlXrO+7n/FRhLCiQlk4fkbGRh9cJ3/f8VEMPveR9m4Ug2l2Zey+UCXjd6EcBqHJ5bw==
+
 dotenv-expand@~11.0.6:
   version "11.0.6"
   resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-11.0.6.tgz#f2c840fd924d7c77a94eff98f153331d876882d3"
@@ -3921,6 +3926,11 @@ electron-to-chromium@^1.4.668:
   version "1.4.736"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.736.tgz#ecb4348f4d5c70fb1e31c347e5bad6b751066416"
   integrity sha512-Rer6wc3ynLelKNM4lOCg7/zPQj8tPOCB2hzD32PX9wd3hgRRi9MxEbmkFCokzcEhRVMiOVLjnL9ig9cefJ+6+Q==
+
+emoji-datasource@^6.0.0:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-6.1.1.tgz#95a38737a322bedae130385c26ce291d0833ce62"
+  integrity sha512-fbS3QJpzGHhujvBULSKXcvsYmVg+1ldfI3VVXG3jnFuniZtkp7rz/OcTcQjbp3m43BYxmiJgKmaoOUPxXQupRQ==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -6649,11 +6659,6 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-bcrypt@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-bcrypt/-/react-native-bcrypt-2.4.0.tgz#95dff2dbc849c22b25f0b9379ab7bfebd2140bfd"
-  integrity sha512-nC8SR/YCCLIluxd1YEkUX2/xjKELLkO0pgIZc1JGUw9o+wnsfpujm0J8NSPmPEqFUe1n2EkysHnAmuKInDusoQ==
-
 react-native-country-codes-picker@2.3.4:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/react-native-country-codes-picker/-/react-native-country-codes-picker-2.3.4.tgz#ac6196199cb76a30997a98ed095243c9af34994f"
@@ -6663,6 +6668,13 @@ react-native-date-picker@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-native-date-picker/-/react-native-date-picker-5.0.1.tgz#a42aab4037b068263569348fd68b5f86635beb9a"
   integrity sha512-0AzGE94jugCPGQM3YOgH3lF85QDOiN1/5KAY30rgQB3c6UI1pQNoU9txyxj9UdcRdcAxc1BSy30OEekL0+3ZQw==
+
+react-native-document-picker@^9.1.1:
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-document-picker/-/react-native-document-picker-9.1.1.tgz#54390c500396b61ed697095ef8a6f9cbe0977bc9"
+  integrity sha512-BW+7DbsILuFThlBm7NUFVUmKKf6Awkcf9R0q8wiCU2DlGGtAKQTt2iHpO5+Dn/7WMPB+rqNv3X1HsmJQ0t5R3g==
+  dependencies:
+    invariant "^2.2.4"
 
 react-native-elements@^3.4.3:
   version "3.4.3"
@@ -6678,6 +6690,13 @@ react-native-elements@^3.4.3:
     react-native-ratings "8.0.4"
     react-native-size-matters "^0.3.1"
 
+react-native-emoji-selector@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-emoji-selector/-/react-native-emoji-selector-0.2.0.tgz#b1ed980cd585a3fd0fca1da6a29006c1a5979615"
+  integrity sha512-+rPPWG5vl5AexdH8udEwtzdq9QUGD6kp+dQ8C/459d3ScM0S3UnT/qAvhmpsTgCbgjpdwiJIcrKNxKmGEDb15g==
+  dependencies:
+    emoji-datasource "^6.0.0"
+
 react-native-gesture-handler@~2.14.0:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.14.1.tgz#930640231024b7921435ab476aa501dd4a6b2e01"
@@ -6688,6 +6707,11 @@ react-native-gesture-handler@~2.14.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-image-picker@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-7.1.2.tgz#383849d1953caf4578874a1f5e5dd11c737bd5cd"
+  integrity sha512-b5y5nP60RIPxlAXlptn2QwlIuZWCUDWa/YPUVjgHc0Ih60mRiOg1PSzf0IjHSLeOZShCpirpvSPGnDExIpTRUg==
 
 react-native-international-phone-number@^0.7.6:
   version "0.7.6"

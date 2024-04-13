@@ -54,9 +54,8 @@ export default function Login() {
     }
   };
 
-  const backHome = () => {
-    navigation.navigate('HomeOut');
-  };
+ 
+
 
   return (
     <View style={styles.container}>

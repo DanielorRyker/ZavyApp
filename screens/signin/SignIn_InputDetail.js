@@ -92,93 +92,35 @@ export default function SignIn_InputDetail() {
         </Text>
       </View>
 
-      <View style={styles.inputDetail}>
-        <TouchableOpacity style={styles.selected} onPress={() => setShow(true)}>
-          <Text
-            style={{
-              color: birthDate == "Ngày sinh " ? "#727881" : "white",
-              fontSize: 15,
-            }}
-          >
-            {birthDate}
-          </Text>
-          <Image
-            style={styles.iconSelected}
-            source={require("../../icon/icon-calendar.png")}
-          />
-        </TouchableOpacity>
-        <DatePicker
-          modal
-          open={show}
-          date={date}
-          onConfirm={onDateChange}
-          onCancel={() => {
-            setShow(false);
-          }}
-          mode="date"
-          title={"Chọn ngày sinh"}
-          cancelText="Hủy"
-          confirmText="Xác nhận"
-          isVisible={show}
-          dividerColor="blue"
-          validationMessage="Vui lòng chọn ngày sinh"
-          maximumDate={new Date()}
-          minimumDate={new Date(1900, 0, 1)}
-        />
+            <View style={styles.inputDetail}>
+                
+                <TouchableOpacity
+                    style={styles.selected}
+                    onPress={showDatePicker}
+                >
+                    <Text style={styles.textBirthDate}>Ngày sinh </Text>
+                    <Image style={styles.iconSelected} source={require('../../icon/icon-calendar.png')}/>
+                </TouchableOpacity>
+ 
+      
 
-        <RNPickerSelect
-          onValueChange={(value) => {
-            setGender(value);
-          }}
-          items={[
-            { label: "Nam", value: "Nam" },
-            { label: "Nữ", value: "Nữ" },
-            { label: "Khác", value: "Không chia sẻ" },
-          ]}
-          style={{
-            inputAndroid: {
-              color: "white",
-              fontSize: 15,
-              width: 325,
-              height: 50,
-              borderRadius: 10,
-              paddingLeft: 20,
-              borderColor: "#727881",
-              marginTop: 20,
-              borderWidth: 1,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            },
-            iconContainer: {
-              top: 10,
-              right: 12,
-            },
-            placeholder: {
-              color: "#727881",
-              fontSize: 15,
-            },
-          }}
-          placeholder={{
-            label: " Giới tính ",
-            value: null,
-            color: "#727881",
-          }}
-          useNativeAndroidPickerStyle={false}
-          value={gender}
-          Icon={() => {
-            return (
-              <Icon
-                style={{ marginTop: 15 }}
-                name="chevron-down"
-                type="evilicon"
-                color="white"
-                size={40}
-              />
-            );
-          }}
-        />
-      </View>
+                <TouchableOpacity
+                    style={styles.selected}
+
+                >
+                    <Text style={styles.textBirthDate}>Giới tính </Text>
+                    <Image style={styles.iconSelected} source={require('../../icon/icon-drop-down.png')} />
+                </TouchableOpacity>
+                
+            <Picker
+                selectedValue={selectedValue}
+                style={styles.inputGender}
+                onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+                <Picker.Item label="Nam" value="Nam" />
+                <Picker.Item label="Nữ" value="Nữ" />
+            </Picker>
+            </View> 
 
       <View style={{ marginTop: 40, alignItems: "center" }}>
         <TouchableOpacity style={styles.button}
