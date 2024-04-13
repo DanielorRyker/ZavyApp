@@ -1,13 +1,58 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getApps, initializeApp } from '@react-native-firebase/app';
+import PhoneInput from "react-native-international-phone-number";
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
+
+if (getApps().length === 0) {
+  initializeApp();
+}
 
 
 export default function Login() {
-  const [username, setUsername] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
+  const handleInputValue = (phoneNumber) => {
+    setPhoneNumber(phoneNumber);
+  }
+
+  const handleSelectedCountry = (country) => {
+    setSelectedCountry(country);
+  }
+
+  const handleLogin = () => {
+    if (phoneNumber !== '' && password !== '') {
+      const usersRef = database().ref('users');
+
+      usersRef.orderByChild('phoneNumber').equalTo(phoneNumber).once('value')
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const userData = snapshot.val();
+            const uid = Object.keys(userData)[0]; 
+            if (userData[uid].password === password) {
+              Alert.alert('Thông báo', 'Đăng nhập thành công!');
+              navigation.navigate('HomeOut');
+            } else {
+              Alert.alert('Thông báo', 'Mật khẩu không đúng.');
+            }
+          } else {
+            Alert.alert('Thông báo', 'Số điện thoại không tồn tại trong hệ thống.');
+          }
+        })
+        .catch((error) => {
+          console.error('Error querying the database: ', error);
+          Alert.alert('Thông báo', 'Đã xảy ra lỗi. Vui lòng thử lại sau.');
+        });
+    } else {
+      Alert.alert('Thông báo', 'Vui lòng nhập số điện thoại và mật khẩu.');
+    }
+  };
 
   const backHome = () => {
     navigation.navigate('HomeOut');
@@ -29,14 +74,49 @@ export default function Login() {
 
    <View style={{paddingHorizontal:15, marginTop: 20}}>
       <View>
-      <TextInput
-        style={styles.input}
-        onChangeText={setUsername}
-        value={username}
-        placeholder="Số điện thoại"
-        placeholderTextColor={'gray'}
-        underlineColorAndroid='transparent'
-      />
+      <PhoneInput
+  value={phoneNumber}
+  onChangePhoneNumber={handleInputValue}
+  selectedCountry={selectedCountry}
+  onChangeSelectedCountry={handleSelectedCountry}
+  defaultCountry="VN"
+  placeholder="Nhập số điện thoại"
+  theme="dark"
+  phoneInputStyles={{
+    container: {
+      height: 45,
+      width: "100%",
+      borderRightWidth: 0,
+      borderLeftWidth: 0,
+      borderTopWidth: 0,
+      borderBottomWidth: 1,
+      borderColor: '#747780',
+      marginBottom: 10,
+      border : 'none',
+    },
+    input: {
+      color: "white",
+      fontSize: 18,
+      fontWeight: '500',
+      backgroundColor: "#1a1a1a",
+    },
+    placeholder: {
+      color: "#747780",
+    },
+    callingCode: {
+      fontSize: 16,
+      fontWeight: "bold",
+      color: "#747780",
+    },
+    flagContainer: {
+      backgroundColor: "#1a1a1a",
+    },
+    
+  }}
+  allowEmpty
+  allowZeroPrefix
+/>
+
       <TextInput
         style={styles.input}
         underlineColorAndroid='transparent'
@@ -61,9 +141,10 @@ export default function Login() {
             
       </TouchableOpacity>
 
-        <TouchableOpacity style={{backgroundColor: '#1a1a1a', borderRadius:60, width:50, height:50, justifyContent:'center', alignItems: 'center'}}>
+        <TouchableOpacity style={{backgroundColor: '#1a1a1a', borderRadius:60, width:50, height:50, justifyContent:'center', alignItems: 'center'}}
+        onPress={handleLogin}
+        >
       <Image style={{width: 50, height : 50, alignItems:'flex-end', tintColor:"#0286ff"}} source={require("../icon/circle_arrow.png")}/>
-
       </TouchableOpacity>      
      </View>
 

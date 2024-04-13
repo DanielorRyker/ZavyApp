@@ -1,10 +1,15 @@
 import React, {useState} from "react";
 import {StyleSheet,Text,View,Image,TouchableOpacity,Alert} from "react-native";
 import {useNavigation} from "@react-navigation/native";
-
 import {CheckBox} from "react-native-elements";
 import PhoneInput from "react-native-international-phone-number";
+import { getApps, initializeApp } from '@react-native-firebase/app';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
+if (getApps().length === 0) {
+  initializeApp();
+}
 export default function SignIn_InputPhoneNumber() {
   const navigation = useNavigation();
 
@@ -27,19 +32,34 @@ export default function SignIn_InputPhoneNumber() {
     } else if (!phoneNumber) {
       Alert.alert('Thông báo', 'Số điện thoại không hợp lệ');
     } else {
-      
       const fullPhoneNumber = phoneNumber.startsWith('0')
-        ?
-      `${selectedCountry.callingCode}${phoneNumber}`
-        :
-      `${selectedCountry.callingCode}0${phoneNumber}`;
+        ? `${selectedCountry.callingCode}${phoneNumber}`
+        : `${selectedCountry.callingCode}0${phoneNumber}`;
+  
+
+      const usersRef = database().ref('users');
+  
+
+      usersRef.orderByChild('phoneNumber').equalTo(fullPhoneNumber).once('value')
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+           
+            Alert.alert('Thông báo', 'Số điện thoại đã được sử dụng');
+          } else {
       
-      navigation.navigate('SignIn_AuthOTP', { phoneNumber: fullPhoneNumber });
+            navigation.navigate('SignIn_AuthOTP', { phoneNumber: fullPhoneNumber });
+          }
+        })
+        .catch((error) => {
+          console.error('Error querying the database: ', error);
+          Alert.alert('Thông báo', 'Đã xảy ra lỗi. Vui lòng thử lại sau.');
+        });
     }
   };
+  
 
   const handleBack = () => {
-    navigation.goBack();
+    navigation.navigate('HomeOut');
   };
 
   return (

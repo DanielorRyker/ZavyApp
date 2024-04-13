@@ -4,6 +4,11 @@ import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'rea
 import PagerView from 'react-native-pager-view';
 import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
+import { getApps, initializeApp } from '@react-native-firebase/app';
+
+if (getApps().length === 0) {
+  initializeApp();
+}
 
 export default function HomeOut() {
   const navigation = useNavigation();

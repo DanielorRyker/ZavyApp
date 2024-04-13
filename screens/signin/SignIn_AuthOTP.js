@@ -3,10 +3,14 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, Alert } from 'react-na
 import OTPTextView from 'react-native-otp-textinput';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
-import {initializeApp} from '@react-native-firebase/app';
 import database from '@react-native-firebase/database';
+import { getApps, initializeApp } from '@react-native-firebase/app';
 
-initializeApp();
+if (getApps().length === 0) {
+  initializeApp();
+}
+
+
 export default function SignIn_AuthOTP() {
   const navigation = useNavigation();
   const route = useRoute();
@@ -71,6 +75,8 @@ export default function SignIn_AuthOTP() {
         } else {
           Alert.alert('Lỗi', 'Người dùng không tồn tại');
         }
+      } else {
+        Alert.alert('Lỗi', 'Xác thực không thành công');
       }
     } catch (error) {
       Alert.alert('Lỗi', 'Mã xác thực không chính xác');

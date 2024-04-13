@@ -9,13 +9,30 @@ buildscript {
         kotlinVersion = findProperty('android.kotlinVersion') ?: '1.8.10'
 
         ndkVersion = "25.1.8937393"
+
+        set('react-native', [
+    versions: [
+      // Overriding Build/Android SDK Versions
+      android : [
+        minSdk    : 19,
+        targetSdk : 33,
+        compileSdk: 33,
+      ],
+
+      // Overriding Library SDK Versions
+      firebase: [
+        // Override Firebase SDK Version
+        bom           : "32.8.1"
+      ],
+    ],
+  ])
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.gms:google-services:4.4.1'
         classpath('com.android.tools.build:gradle')
         classpath('com.facebook.react:react-native-gradle-plugin')
     }
