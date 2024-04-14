@@ -38,6 +38,7 @@ export default function SignIn_InputPassword() {
     }
   };
 
+
   const validatePasswordInput = (password) => {
     if (password.length < 8) {
       return "Mật khẩu phải chứa ít nhất 8 ký tự";
@@ -58,32 +59,32 @@ export default function SignIn_InputPassword() {
     return null;
   };
 
-  const handleContinue = async () => {
-    if (!password || !confirmPassword) {
-      setErrorMessage("Vui lòng không để trống mật khẩu hoặc mật khẩu xác nhận");
-    } else if (password !== confirmPassword) {
-      setErrorMessage("Mật khẩu xác nhận không khớp");
-    } else {
-      const validationResult = validatePasswordInput(password);
-      if (validationResult === null) {
-        try {
-          const user = auth().currentUser;
-          if (user && user.uid) {
-            // Lưu mật khẩu vào cơ sở dữ liệu Firebase
-            const userRef = database().ref("users/" + user.uid);
-            await userRef.update({
-              password: password,
-            });
-            navigation.navigate("SignIn_InputDisplayName");
-          }
-        } catch (error) {
-          setErrorMessage("Đã xảy ra lỗi khi cập nhật mật khẩu");
+ const handleContinue = async () => {
+  if (password || !confirmPassword) {
+    setErrorMessage("Vui lòng nhập mật khẩu và mật khẩu xác nhận");
+  } else if (password !== confirmPassword) {
+    setErrorMessage("Mật khẩu xác nhận không khớp");
+  } else {
+    const validationResult = validatePasswordInput(password);
+    if (validationResult === null) {
+      try {
+        const user = auth().currentUser;
+        if (user && user.uid) {
+
+          const userRef = database().ref("users/" + user.uid);
+          await userRef.update({
+            password: password,
+          });
+          navigation.navigate("SignIn_InputDisplayName");
         }
-      } else {
-        setErrorMessage(validationResult);
+      } catch (error) {
+        setErrorMessage("Đã xảy ra lỗi khi cập nhật thông tin đăng nhập");
       }
+    } else {
+      setErrorMessage(validationResult);
     }
-  };
+  }
+};
 
   const [lengthCheck, setLengthCheck] = useState(false);
   const [specialCharCheck, setSpecialCharCheck] = useState(false);
@@ -106,27 +107,29 @@ export default function SignIn_InputPassword() {
             </View>
 
             <View style={styles.inputPassword}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text) => handlePasswordInput('password', text)}
-                    placeholder="Nhập mật khẩu mới"
-                    placeholderTextColor={'gray'}
-                    underlineColorAndroid='transparent'
-                    passwordRules={'required: lower; required: upper; required: digit; required: length(8,); required: special;'}
-                    secureTextEntry={true}
-                />
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => handlePasswordInput('password', text)}
+                placeholder="Nhập mật khẩu mới"
+                placeholderTextColor={'gray'}
+                underlineColorAndroid='transparent'
+                passwordRules={'required: lower; required: upper; required: digit; required: length(8,); required: special;'}
+                secureTextEntry={true}
+                autoCapitalize="none"
 
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text) => handlePasswordInput('confirmPassword', text)}
-                    placeholder="Nhập lại mật khẩu"
-                    placeholderTextColor={'gray'}
-                    underlineColorAndroid='transparent'
-                    passwordRules={'required: lower; required: upper; required: digit; required: length(8,); required: special;'}
-                    secureTextEntry={true}
-                />
+              />
 
-               
+              <TextInput
+                style={styles.input}
+                onChangeText={(text) => handlePasswordInput('confirmPassword', text)}
+                placeholder="Nhập lại mật khẩu"
+                placeholderTextColor={'gray'}
+                underlineColorAndroid='transparent'
+                passwordRules={'required: lower; required: upper; required: digit; required: length(8,); required: special;'}
+                secureTextEntry={true}
+              />
+
+     
             </View> 
             {errorMessage ? <Text style={{color: 'red', marginLeft: 30, marginTop:10}}>* {errorMessage}</Text> : null}
             <View style={styles.validateTextGroup}>

@@ -10,7 +10,6 @@ if (getApps().length === 0) {
   initializeApp();
 }
 
-
 export default function SignIn_AuthOTP() {
   const navigation = useNavigation();
   const route = useRoute();
@@ -20,6 +19,14 @@ export default function SignIn_AuthOTP() {
 
   useEffect(() => {
     sendOTP();
+    const unsubscribe = auth().onAuthStateChanged(async user => {
+      if (user) {
+        createUserCollection(user.uid, route.params.phoneNumber);
+        Alert.alert('Thông báo', 'Xác thực thành công');
+        navigation.navigate('SignIn_InputPassword');
+      }
+    });
+    return () => unsubscribe();
   }, []);
 
   const createUserCollection = (uid, phoneNumber) => {
@@ -94,6 +101,7 @@ export default function SignIn_AuthOTP() {
     navigation.goBack();
   };
 
+  
   return (
     <View style={styles.container}>
       <View style={styles.backHome}>

@@ -44,6 +44,7 @@ export default function SignIn_InputDisplayName() {
   const handleContinue = async () => {
     if (lengthCheck && specialCharCheck && uppercaseCheck && wordCheck) {
       try {
+        
         const user = auth().currentUser;
         if (user && user.uid) {
           // Lưu tên người dùng vào cơ sở dữ liệu Firebase

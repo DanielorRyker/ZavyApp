@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { getApps, initializeApp } from '@react-native-firebase/app';
 import PhoneInput from "react-native-international-phone-number";
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-
+import { AuthContext } from '../status/AuthContext'; // Đường dẫn tới file AuthContext của bạn
 
 if (getApps().length === 0) {
   initializeApp();
 }
-
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const { logIn } = useContext(AuthContext); // Sử dụng AuthContext
 
   const handleInputValue = (phoneNumber) => {
     setPhoneNumber(phoneNumber);
@@ -26,42 +26,31 @@ export default function Login() {
     setSelectedCountry(country);
   }
 
-  const handleLogin = () => {
-    // Kiểm tra xem số điện thoại và mật khẩu đã được nhập chưa
+  const handleLogin = async () => {
     if (phoneNumber !== '' && password !== '') {
-      // Tạo một tham chiếu đến nút 'users' trong cơ sở dữ liệu Firebase
       const usersRef = database().ref('users');
   
-      // Truy vấn cơ sở dữ liệu để tìm kiếm người dùng có số điện thoại tương ứng
       usersRef.orderByChild('phoneNumber').equalTo(phoneNumber).once('value')
-        .then((snapshot) => {
-          // Kiểm tra xem có dữ liệu trả về từ truy vấn hay không
+        .then(async (snapshot) => {
           if (snapshot.exists()) {
-            // Lấy dữ liệu người dùng từ snapshot
             const userData = snapshot.val();
-            // Lấy uid của người dùng từ keys của object userData
             const uid = Object.keys(userData)[0]; 
-            // Kiểm tra xem mật khẩu có khớp với mật khẩu trong cơ sở dữ liệu hay không
+         
             if (userData[uid].password === password) {
-              // Nếu mật khẩu đúng, hiển thị thông báo thành công và điều hướng đến trang 'HomeOut'
-              Alert.alert('Thông báo', 'Đăng nhập thành công!');
+              Alert.alert('Thông báo', 'Đăng nhập thành công!');          
+              logIn(); // Cập nhật trạng thái đăng nhập
               navigation.navigate('Home');
             } else {
-              // Nếu mật khẩu sai, hiển thị thông báo lỗi
               Alert.alert('Thông báo', 'Mật khẩu không đúng.');
             }
           } else {
-            // Nếu không tìm thấy số điện thoại trong cơ sở dữ liệu, hiển thị thông báo lỗi
             Alert.alert('Thông báo', 'Số điện thoại không tồn tại trong hệ thống.');
           }
         })
         .catch((error) => {
-          // Nếu có lỗi xảy ra khi truy vấn cơ sở dữ liệu, hiển thị thông báo lỗi
-          console.error('Error querying the database: ', error);
           Alert.alert('Thông báo', 'Đã xảy ra lỗi. Vui lòng thử lại sau.');
         });
     } else {
-      // Nếu số điện thoại hoặc mật khẩu chưa được nhập, hiển thị thông báo lỗi
       Alert.alert('Thông báo', 'Vui lòng nhập số điện thoại và mật khẩu.');
     }
   };
@@ -70,7 +59,6 @@ export default function Login() {
   const backHome = () => {
     navigation.navigate('HomeOut');
   };
-
 
   return (
     <View style={styles.container}>

@@ -10,15 +10,16 @@ const images = {
   microphoneActive: require('../../icon/microphone-active.png'),
   emoji: require('../../icon/emoji.png'),
   image: require('../../icon/images.png'),
-  searchWhite: require('../../icon/searchWhite.png'),
+  telephone: require('../../icon/telephone.png'),
   videocall: require('../../icon/videocall.png'),
   menu: require('../../icon/menu.png'),
   backHome :require('../../icon/back.png'),
 };
 
-export default function MessageGr() {
+export default function Message() {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [avatar, setAvatar] = useState(null);
   const [image, setImage] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -134,8 +135,8 @@ export default function MessageGr() {
         <Text style={styles.username}>Tên người dùng</Text>
         
         <View style = {styles.taskbar}>
+            <Image source={images.telephone} style={styles.telephone}/>
             <Image source={images.videocall} style={styles.videocall}/>
-            <Image source={images.searchWhite} style={styles.searchWhite}/>
             <Image source={images.menu} style={styles.menu}/>
             
         </View>
@@ -250,7 +251,7 @@ const styles = StyleSheet.create({
     
     
   },
-  searchWhite:{
+  telephone:{
     width: 25,
     height: 25,
   },
